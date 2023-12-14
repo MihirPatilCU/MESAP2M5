@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Time and Access Counter</title>
+    <script>
+        // Function to update the time
+        function updateTime() {
+            document.getElementById('time').innerHTML = new Date().toLocaleTimeString();
+        }
+
+        // Function to update the access count
+        function updateAccessCount() {
+            // Check if 'accessCount' is stored in localStorage
+            if (localStorage.getItem('accessCount')) {
+                // If it is, increment the count
+                localStorage.setItem('accessCount', Number(localStorage.getItem('accessCount')) + 1);
+            } else {
+                // If not, initialize it to 1
+                localStorage.setItem('accessCount', 1);
+            }
+            // Display the updated count
+            document.getElementById('accessCount').innerHTML = localStorage.getItem('accessCount');
+        }
+
+        // Update time every second
+        setInterval(updateTime, 1000);
+
+        // Update access count on page load
+        window.onload = updateAccessCount;
+    </script>
+</head>
+<body>
+    <h1>Welcome!</h1>
+    <h2>Web Page Hosted on Beaglebone Web Server</h2>
+    <h3>Hosted by: Cija, Mihir, Nicholas and Stijn</h3>
+    <p>Current Time: <span id="time"></span></p>
+    <p>Number of Page Accesses: <span id="accessCount"></span></p>
+</body>
+</html>
